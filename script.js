@@ -1,37 +1,42 @@
 const calculateBtn = document.getElementById('calculate');
-const heightInput = document.querySelector('#height');
-const weightInput = document.querySelector('#weight');
-const resultOutput = document.querySelector('#result');
+const heightInput = document.getElementById('height');
+const weightInput = document.getElementById('weight');
+const ageInput = document.getElementById('age');
+const resultOutput = document.getElementById('result');
 const commentOutput = document.querySelector('.comment');
-const historyList = document.querySelector('#history-list');
+const historyList = document.getElementById('history-list');
 const themeToggle = document.getElementById('theme-toggle');
+const pointer = document.getElementById('pointer');
 
-// Theme toggle
+// Перемикач теми
 themeToggle.addEventListener('click', () => {
   document.body.classList.toggle('dark');
 });
 
-// Calculate BMI
+// Обчислення BMI
 calculateBtn.addEventListener('click', function () {
-  const heightValue = parseFloat(heightInput.value.trim());
-  const weightValue = parseFloat(weightInput.value.trim());
+  const height = parseFloat(heightInput.value.trim());
+  const weight = parseFloat(weightInput.value.trim());
+  const age = parseInt(ageInput.value.trim());
+  const gender = document.querySelector('input[name="gender"]:checked').value;
 
-  if (!heightValue || !weightValue || heightValue <= 0 || weightValue <= 0) {
-    alert('Please enter valid height and weight!');
+  if (!height || !weight || !age || height <= 0 || weight <= 0 || age <= 0) {
+    alert('Please enter valid height, weight, and age!');
     return;
   }
 
-  const heightInMeters = heightValue / 100;
-  const bmiValue = weightValue / (heightInMeters * heightInMeters);
-  const roundedBmiValue = bmiValue.toFixed(2);
-  resultOutput.innerHTML = roundedBmiValue;
+  const heightMeters = height / 100;
+  const bmi = weight / (heightMeters * heightMeters);
+  const roundedBMI = bmi.toFixed(1);
+  resultOutput.innerText = roundedBMI;
 
+  // Статус
   let status = '';
-  if (bmiValue < 18.5) {
+  if (bmi < 18.5) {
     status = 'Underweight 😒';
-  } else if (bmiValue < 25) {
+  } else if (bmi < 25) {
     status = 'Normal Weight 😍';
-  } else if (bmiValue < 30) {
+  } else if (bmi < 30) {
     status = 'Overweight 😮';
   } else {
     status = 'Obese 😱';
@@ -39,7 +44,18 @@ calculateBtn.addEventListener('click', function () {
 
   commentOutput.innerHTML = `Comment: you are <span id="comment">${status}</span>`;
 
-  const newItem = document.createElement('li');
-  newItem.textContent = `Height: ${heightValue} cm, Weight: ${weightValue} kg → BMI: ${roundedBmiValue} (${status})`;
-  historyList.prepend(newItem);
+  // Здорова вага
+  const minHealthy = (18.5 * heightMeters * heightMeters).toFixed(1);
+  const maxHealthy = (24.9 * heightMeters * heightMeters).toFixed(1);
+  commentOutput.innerHTML += `<br>Healthy weight range: ${minHealthy}–${maxHealthy} kg`;
+
+  // Додати до історії
+  const item = document.createElement('li');
+  item.textContent = `Gender: ${gender}, Age: ${age}, Height: ${height} cm, Weight: ${weight} kg → BMI: ${roundedBMI} (${status})`;
+  historyList.prepend(item);
+
+  // Перемістити стрілку на шкалі
+  const scale = document.querySelector('.bmi-scale');
+  const relativePosition = Math.min((bmi / 40), 1);
+  pointer.style.left = `calc(${(relativePosition * 100).toFixed(1)}% - 15px)`;
 });
