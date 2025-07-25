@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&display=swap');
 
 * {
-  padding: 0;
   margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
@@ -10,35 +10,39 @@ body {
   font-family: 'Nunito', sans-serif;
   background-color: #cdcdcd;
   color: #000;
-  transition: background-color 0.3s ease, color 0.3s ease;
   min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 body.dark {
   background-color: #1e1e1e;
-  color: #fff;
+  color: white;
 }
 
 .container {
-  max-width: 600px;
-  margin: 2rem auto;
+  width: 90%;
+  max-width: 500px;
   padding: 1rem;
-  text-align: center;
 }
 
 #theme-toggle {
+  float: right;
   background: transparent;
   border: none;
   font-size: 18px;
   cursor: pointer;
-  float: right;
   margin-bottom: 10px;
+  display: block;
 }
 
 .box {
   background-color: #fafafa;
   border-radius: 20px;
   padding: 2rem;
+  text-align: center;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
@@ -46,18 +50,23 @@ body.dark .box {
   background-color: #2c2c2c;
 }
 
+h1 {
+  font-size: 26px;
+  margin-bottom: 1rem;
+}
+
 .input {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.2rem;
 }
 
 .input label {
   display: block;
   font-size: 16px;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.3rem;
 }
 
 .input input[type="number"] {
-  width: 70%;
+  width: 100%;
   padding: 0.5rem;
   font-size: 16px;
   border: 1px solid #4f7df9;
@@ -66,15 +75,24 @@ body.dark .box {
 }
 
 .input input[type="radio"] {
+  margin-right: 0.4rem;
+}
+
+.input label input[type="radio"] {
   margin-right: 0.5rem;
+}
+
+.input:nth-child(1) label {
+  display: inline-block;
+  margin: 0 1rem;
 }
 
 button#calculate {
   width: 100%;
-  background-color: #4f7df9;
-  color: #fff;
-  font-size: 16px;
   padding: 0.8rem;
+  font-size: 16px;
+  background-color: #4f7df9;
+  color: white;
   border: none;
   border-radius: 12px;
   cursor: pointer;
@@ -90,67 +108,56 @@ button#calculate:active {
 }
 
 .result {
-  margin-top: 2rem;
+  margin-top: 1.5rem;
 }
 
-.result #result {
-  font-size: 36px;
+#result {
+  font-size: 32px;
   font-weight: 800;
-  background: #eaeaea;
-  padding: 10px 20px;
+  background-color: #eaeaea;
+  color: #4f7df9;
+  padding: 0.5rem 1.5rem;
   border-radius: 30px;
   display: inline-block;
-  color: #4f7df9;
 }
 
 .comment {
   margin-top: 1rem;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
 }
 
 #comment {
   color: #4f7df9;
-  font-weight: 800;
+  font-weight: bold;
 }
 
-/* BMI SCALE */
+/* BMI scale */
 .bmi-scale {
   display: flex;
   position: relative;
-  margin: 2rem 0 3rem;
-  height: 50px;
+  height: 40px;
   border-radius: 8px;
   overflow: hidden;
-  font-size: 14px;
-  text-align: center;
+  margin: 2rem 0 3rem;
+  font-size: 12px;
   font-weight: bold;
+  text-align: center;
 }
 
 .range {
   flex: 1;
+  padding: 5px;
+  color: #fff;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 5px;
-  color: white;
 }
 
-.underweight {
-  background: #3cb1c7;
-}
-
-.normal {
-  background: #30c473;
-}
-
-.overweight {
-  background: #f0a500;
-}
-
-.obese {
-  background: #e94e4e;
-}
+.underweight { background-color: #3cb1c7; }
+.normal      { background-color: #30c473; }
+.overweight  { background-color: #f0a500; }
+.obese       { background-color: #e94e4e; }
 
 #pointer {
   position: absolute;
@@ -165,17 +172,17 @@ button#calculate:active {
 /* History */
 .history {
   text-align: left;
-  margin-top: 2rem;
 }
 
 .history h3 {
-  font-size: 18px;
-  margin-bottom: 10px;
+  font-size: 16px;
+  margin-bottom: 8px;
 }
 
 .history ul {
   list-style: none;
   padding: 0;
+  margin: 0;
   max-height: 150px;
   overflow-y: auto;
   border-top: 1px solid #ccc;
@@ -188,18 +195,34 @@ button#calculate:active {
 }
 
 /* Responsive */
-@media (max-width: 600px) {
-  .input input[type="number"] {
-    width: 100%;
+@media (max-width: 500px) {
+  h1 {
+    font-size: 22px;
   }
 
   .bmi-scale {
-    font-size: 12px;
+    font-size: 10px;
   }
 
-  #theme-toggle {
-    float: none;
-    margin: 0 auto 1rem;
-    display: block;
+  .input label {
+    font-size: 14px;
+  }
+
+  button#calculate {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  #result {
+    font-size: 26px;
+    padding: 0.4rem 1rem;
+  }
+
+  .comment {
+    font-size: 14px;
+  }
+
+  #pointer {
+    font-size: 14px;
   }
 }
