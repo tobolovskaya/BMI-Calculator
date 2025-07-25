@@ -69,6 +69,10 @@ h1 {
   color: inherit;
 }
 
+body.dark .theme-bar #theme-toggle {
+  color: #fff;
+}
+
 .input {
   margin-bottom: 1.2rem;
 }
