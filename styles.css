@@ -55,21 +55,18 @@ h1 {
   margin-bottom: 1rem;
 }
 
-.title-with-theme {
+.theme-bar {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 26px;
-  margin-bottom: 1rem;
+  justify-content: flex-end;
+  margin-bottom: 0.5rem;
 }
 
-.title-with-theme #theme-toggle {
-  font-size: 18px;
+.theme-bar #theme-toggle {
+  font-size: 16px;
   background: transparent;
   border: none;
   cursor: pointer;
   color: inherit;
-  margin-left: 1rem;
 }
 
 .input {
