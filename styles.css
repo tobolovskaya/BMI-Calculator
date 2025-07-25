@@ -7,24 +7,23 @@
 }
 
 body {
-  min-height: 100vh;
-  background-color: #85ffbd;
   font-family: 'Nunito', sans-serif;
+  background-color: #85ffbd;
+  color: #000;
   transition: background-color 0.3s ease, color 0.3s ease;
+  min-height: 100vh;
 }
 
 body.dark {
   background-color: #1e1e1e;
-  color: white;
+  color: #fff;
 }
 
 .container {
-  position: absolute;
-  left: 50%;
-  top: 5%;
-  transform: translateX(-50%);
-  width: 90%;
-  max-width: 500px;
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 1rem;
+  text-align: center;
 }
 
 #theme-toggle {
@@ -32,67 +31,58 @@ body.dark {
   border: none;
   font-size: 18px;
   cursor: pointer;
-  margin-bottom: 10px;
   float: right;
+  margin-bottom: 10px;
 }
 
 .box {
-  background: #fafafa;
-  border-radius: 38px;
-  text-align: center;
-  padding: 20px;
-  box-shadow: 0px 0px 66px -21px rgba(0, 0, 0, 0.15);
-  position: relative;
+  background-color: #fafafa;
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
 body.dark .box {
   background-color: #2c2c2c;
 }
 
-h1 {
-  font-size: 32px;
-  margin-bottom: 20px;
-}
-
-.content {
-  padding: 0 20px;
-}
-
 .input {
-  margin-bottom: 20px;
+  margin-bottom: 1.5rem;
 }
 
 .input label {
   display: block;
-  font-size: 18px;
-  margin-bottom: 10px;
+  font-size: 16px;
+  margin-bottom: 0.5rem;
 }
 
-.input input {
-  width: 80%;
-  font-size: 20px;
-  padding: 10px;
+.input input[type="number"] {
+  width: 70%;
+  padding: 0.5rem;
+  font-size: 16px;
   border: 1px solid #4f7df9;
   border-radius: 8px;
   text-align: center;
 }
 
+.input input[type="radio"] {
+  margin-right: 0.5rem;
+}
+
 button#calculate {
-  font-family: 'Nunito', sans-serif;
-  color: #fff;
-  background: #4f7df9;
-  font-size: 16px;
-  border-radius: 12px;
-  padding: 12px 0;
   width: 100%;
-  outline: none;
+  background-color: #4f7df9;
+  color: #fff;
+  font-size: 16px;
+  padding: 0.8rem;
   border: none;
+  border-radius: 12px;
   cursor: pointer;
-  transition: background 0.2s ease, transform 0.1s ease;
+  transition: background-color 0.2s ease;
 }
 
 button#calculate:hover {
-  background: #0044ff;
+  background-color: #0044ff;
 }
 
 button#calculate:active {
@@ -100,21 +90,21 @@ button#calculate:active {
 }
 
 .result {
-  padding: 20px;
+  margin-top: 2rem;
 }
 
 .result #result {
   font-size: 36px;
-  font-weight: 900;
-  color: #4f7df9;
-  background-color: #eaeaea;
+  font-weight: 800;
+  background: #eaeaea;
+  padding: 10px 20px;
+  border-radius: 30px;
   display: inline-block;
-  padding: 7px 20px;
-  border-radius: 55px;
-  margin-bottom: 10px;
+  color: #4f7df9;
 }
 
 .comment {
+  margin-top: 1rem;
   font-size: 18px;
   font-weight: 600;
 }
@@ -124,9 +114,58 @@ button#calculate:active {
   font-weight: 800;
 }
 
+/* BMI SCALE */
+.bmi-scale {
+  display: flex;
+  position: relative;
+  margin: 2rem 0 3rem;
+  height: 50px;
+  border-radius: 8px;
+  overflow: hidden;
+  font-size: 14px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.range {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 5px;
+  color: white;
+}
+
+.underweight {
+  background: #3cb1c7;
+}
+
+.normal {
+  background: #30c473;
+}
+
+.overweight {
+  background: #f0a500;
+}
+
+.obese {
+  background: #e94e4e;
+}
+
+#pointer {
+  position: absolute;
+  top: 100%;
+  transform: translateY(5px);
+  font-size: 16px;
+  font-weight: bold;
+  color: #4f7df9;
+  transition: left 0.3s ease;
+}
+
+/* History */
 .history {
-  margin-top: 20px;
   text-align: left;
+  margin-top: 2rem;
 }
 
 .history h3 {
@@ -136,13 +175,31 @@ button#calculate:active {
 
 .history ul {
   list-style: none;
-  padding-left: 0;
+  padding: 0;
   max-height: 150px;
   overflow-y: auto;
+  border-top: 1px solid #ccc;
 }
 
 .history li {
   padding: 5px 0;
   font-size: 14px;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #eee;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .input input[type="number"] {
+    width: 100%;
+  }
+
+  .bmi-scale {
+    font-size: 12px;
+  }
+
+  #theme-toggle {
+    float: none;
+    margin: 0 auto 1rem;
+    display: block;
+  }
 }
