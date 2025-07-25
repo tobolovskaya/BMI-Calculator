@@ -55,6 +55,23 @@ h1 {
   margin-bottom: 1rem;
 }
 
+.title-with-theme {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 26px;
+  margin-bottom: 1rem;
+}
+
+.title-with-theme #theme-toggle {
+  font-size: 18px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: inherit;
+  margin-left: 1rem;
+}
+
 .input {
   margin-bottom: 1.2rem;
 }
