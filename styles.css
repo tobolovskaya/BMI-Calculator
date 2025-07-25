@@ -8,7 +8,7 @@
 
 body {
   font-family: 'Nunito', sans-serif;
-  background-color: #85ffbd;
+  background-color: #cdcdcd;
   color: #000;
   transition: background-color 0.3s ease, color 0.3s ease;
   min-height: 100vh;
